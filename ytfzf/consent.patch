@@ -1,0 +1,15 @@
+509,514c509,515
+<     wget -O - --quiet \
+<     -H 'authority: www.youtube.com' \
+<     -H "user-agent: $useragent" \
+<     -H 'accept-language: en-US,en;q=0.9' \
+<     --no-cookie \
+<     "${link}?search_query=${query}&${sp}" \
+---
+> 	curl "$link" -s \
+> 	  -G --data-urlencode "search_query=$query" \
+> 	  -G --data-urlencode "sp=$sp" \
+> 	  -H 'authority: www.youtube.com' \
+> 	  -H "user-agent: $useragent" \
+> 	  -H 'accept-language: en-US,en;q=0.9' \
+> 	  --compressed
